@@ -112,6 +112,7 @@ export async function GET(req) {
 
   const speech = req.nextUrl.searchParams.get("speech") || "formal";
   const speechExample = speech === "formal" ? formalExample : casualExample;
+  const model = req.nextUrl.searchParams.get("model") || "gpt-3.5-turbo";
 
   const chatCompletion = await openai.chat.completions.create({
     messages: [
@@ -163,8 +164,9 @@ You should respond with:
         } in Japanese in ${speech} speech?`,
       },
     ],
-    // model: "gpt-4-turbo-preview", // https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo
-    model: "gpt-3.5-turbo", // https://help.openai.com/en/articles/7102672-how-can-i-access-gpt-4
+    //model: model,
+    model: "gpt-4-turbo-preview", // https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo
+    //model: "gpt-3.5-turbo", // https://help.openai.com/en/articles/7102672-how-can-i-access-gpt-4
     response_format: {
       type: "json_object",
     },

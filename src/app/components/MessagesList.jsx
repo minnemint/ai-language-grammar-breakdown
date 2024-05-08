@@ -1,9 +1,10 @@
-import { useAITeacher } from "@/hooks/useAITeacher";
+import { useAITeacher } from "@/hooks/useAiTeacher";
 import { useEffect, useRef } from "react";
 
 export const MessagesList = () => {
   const messages = useAITeacher((state) => state.messages);
   const playMessage = useAITeacher((state) => state.playMessage);
+  const stopMessage = useAITeacher((state) => state.stopMessage);
   const { currentMessage } = useAITeacher();
   const english = useAITeacher((state) => state.english);
   const furigana = useAITeacher((state) => state.furigana);
@@ -53,12 +54,12 @@ export const MessagesList = () => {
       {messages.length === 0 && (
         <div className="h-full w-full grid place-content-center text-center">
           <h2 className="text-8xl font-bold text-white/90 italic">
-            HUST TEST
+            HUST
             <br />
-            Japanese School
+            Japanese Language School
           </h2>
           <h2 className="text-8xl font-bold font-jp text-red-600/90 italic">
-          日本語学校
+          ハスト日本語学校
           </h2>
         </div>
       )}

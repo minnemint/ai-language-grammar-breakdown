@@ -6,8 +6,11 @@ import { degToRad } from "three/src/math/MathUtils";
 import { TypingBox } from "./TypingBox";
 import { MessagesList } from "./MessagesList";
 import { BoardSettings } from "./BoardSetting";
+import { useAITeacher } from "@/hooks/useAiTeacher";
 
 export const Experience = () => {
+    const teacher = useAITeacher((state) => state.teacher);
+    const classroom = useAITeacher((state) => state.classroom);
     return(
         <>
          <div className="z-10 md:justify-center fixed bottom-4 left-4 right-4 flex gap-3 flex-wrap justify-stretch">
@@ -24,12 +27,13 @@ export const Experience = () => {
             <BoardSettings/>
             </Html>
             <Teacher 
-             teacher={"Nanami"} 
+            key = {teacher}
+             teacher={teacher} 
              position={[-1, -1.7, -3]}
              scale ={1.5}
              rotation-y={degToRad(20)}
             />
-            <Gltf src="/models/classroom_default.glb" position={[0.2, -1.7, -2]}/>
+            <Gltf src={`/models/classroom_${classroom}.glb`} position={[0.2, -1.7, -2]}/>
         </Canvas>
         </>
     )

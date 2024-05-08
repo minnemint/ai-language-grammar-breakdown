@@ -1,4 +1,5 @@
-import { teachers, useAITeacher } from "@/hooks/useAITeacher";
+import { teachers, useAITeacher } from "@/hooks/useAiTeacher";
+import { ModelToggle } from "./ModelToggle";
 
 export const BoardSettings = () => {
   const furigana = useAITeacher((state) => state.furigana);
@@ -16,14 +17,31 @@ export const BoardSettings = () => {
   const classroom = useAITeacher((state) => state.classroom);
   const setClassroom = useAITeacher((state) => state.setClassroom);
 
-  // New state for exampleType
-  const exampleType = useAITeacher((state) => state.exampleType);
-  const setExampleType = useAITeacher((state) => state.setExampleType);
-
   return (
     <>
+    <div className="fixed bottom-4 right-4">
+        {/* Add the model toggle button */}
+        <ModelToggle />
+      </div>
+
       <div className="absolute right-0 bottom-full flex flex-row gap-10 mb-20">
-        
+        {teachers.map((sensei, idx) => (
+          <div
+            key={idx}
+            className={`p-3 transition-colors duration-500 ${
+              teacher === sensei ? "bg-white/80" : "bg-white/40"
+            }`}
+          >
+            <div onClick={() => setTeacher(sensei)}>
+              <img
+                src={`/images/${sensei}.jpg`}
+                alt={sensei}
+                className="object-cover w-40 h-40"
+              />
+            </div>
+            <h2 className="text-3xl font-bold mt-3 text-center">{sensei}</h2>
+          </div>
+        ))}
       </div>
       <div className="absolute left-0 bottom-full flex flex-row gap-2 mb-20">
         <button
@@ -44,7 +62,7 @@ export const BoardSettings = () => {
           } py-4 px-10 text-4xl rounded-full transition-colors duration-500 backdrop-blur-md`}
           onClick={() => setClassroom("alternative")}
         >
-          Test classroom
+          Alternative classroom
         </button>
       </div>
       <div className="absolute left-0 top-full flex flex-row gap-2 mt-20">
@@ -69,22 +87,6 @@ export const BoardSettings = () => {
           Casual
         </button>
       </div>
-      {/* New buttons for selecting formal or casual examples */}
-      <div className="absolute top-0 left-0 flex flex-row gap-2 m-5">
-        <button
-          className={`text-lg p-2 rounded ${exampleType === "formal" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}`}
-          onClick={() => setExampleType("formal")}
-        >
-          Formal Example
-        </button>
-        <button
-          className={`text-lg p-2 rounded ${exampleType === "casual" ? "bg-green-500 text-white" : "bg-gray-200 text-black"}`}
-          onClick={() => setExampleType("casual")}
-        >
-          Casual Example
-        </button>
-      </div>
-      
       <div className="absolute right-0 top-full flex flex-row gap-2 mt-20">
         <button
           className={` ${

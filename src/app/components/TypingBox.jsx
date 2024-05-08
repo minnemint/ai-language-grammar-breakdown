@@ -1,4 +1,4 @@
-import { useAITeacher } from "@/hooks/useAITeacher";
+import { useAITeacher } from "@/hooks/useAiTeacher";
 import { useState } from "react";
 
 export const TypingBox = () => {
