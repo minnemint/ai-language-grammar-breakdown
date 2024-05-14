@@ -17,12 +17,21 @@ export const BoardSettings = () => {
   const classroom = useAITeacher((state) => state.classroom);
   const setClassroom = useAITeacher((state) => state.setClassroom);
 
+  const clearMessages = useAITeacher((state) => state.clearMessages);
   return (
     <>
     <div className="fixed bottom-4 right-4">
         {/* Add the model toggle button */}
         <ModelToggle />
       </div>
+
+      {/* Clear Messages Button */}
+      <button
+          onClick={clearMessages}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Clear Messages
+        </button>
 
       <div className="absolute right-0 bottom-full flex flex-row gap-10 mb-20">
         {teachers.map((sensei, idx) => (

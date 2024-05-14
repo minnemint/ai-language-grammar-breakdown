@@ -3,6 +3,17 @@ const { create } = require("zustand");
 export const teachers = ["Nanami", "Naoki"];
 
 export const useAITeacher = create((set, get) => ({
+
+  clearMessages: () => {
+    set({ messages: [], currentMessage: null });
+  },
+
+  customPrompt: '',
+  setCustomPrompt: (prompt) => {
+    localStorage.setItem('customPrompt', prompt);
+    set({ customPrompt: prompt });
+  },
+  
   aiModel: "gpt-3.5-turbo", // default model
   setAiModel: (model) => set({ aiModel: model }),
   
@@ -56,9 +67,10 @@ export const useAITeacher = create((set, get) => ({
     }));
 
     const speech = get().speech;
+    const customPrompt = get().customPrompt; // Use the custom prompt if available
 
     // Ask AI
-    const res = await fetch(`/api/ai?question=${question}&speech=${speech}`);
+    const res = await fetch(`/api/ai?question=${question}&speech=${speech}&prompt=${encodeURIComponent(customPrompt)}`);
     const data = await res.json();
     message.answer = data;
     message.speech = speech;
