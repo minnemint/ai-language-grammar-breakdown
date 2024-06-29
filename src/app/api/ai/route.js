@@ -165,8 +165,8 @@ You should respond with:
         } in Japanese in ${speech} speech?`,
       },
     ],
-    model: model,
-    //model: "gpt-4-turbo-preview", // https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo
+    //model: model,
+    model: "gpt-4-turbo-preview", // https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo
     //model: "gpt-3.5-turbo", // https://help.openai.com/en/articles/7102672-how-can-i-access-gpt-4
     response_format: {
       type: "json_object",
