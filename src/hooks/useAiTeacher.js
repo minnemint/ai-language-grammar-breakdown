@@ -4,6 +4,13 @@ export const teachers = ["Nanami", "Naoki"];
 
 export const useAITeacher = create((set, get) => ({
 
+  romaji: false,  // default state for romaji
+  setRomaji: (romaji) => {
+    set(() => ({
+      romaji,
+    }));
+  },
+
   clearMessages: () => {
     set({ messages: [], currentMessage: null });
   },
@@ -14,8 +21,8 @@ export const useAITeacher = create((set, get) => ({
     set({ customPrompt: prompt });
   },
   
-  aiModel: "gpt-3.5-turbo", // default model
-  setAiModel: (model) => set({ aiModel: model }),
+  // aiModel: "gpt-3.5-turbo", // default model
+  // setAiModel: (model) => set({ aiModel: model }),
   
   messages: [],
   currentMessage: null,

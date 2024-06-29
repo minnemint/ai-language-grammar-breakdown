@@ -6,7 +6,7 @@ const openai = new OpenAI({
 
 const formalExample = {
   japanese: [
-    { word: "日本", reading: "にほん" },
+    { word: "日本", reading: "にほん"},
     { word: "に" },
     { word: "住んで", reading: "すんで" },
     { word: "います" },
@@ -20,8 +20,8 @@ const formalExample = {
         { word: "日本", reading: "にほん" },
         { word: "に" },
         { word: "住んで", reading: "すんで" },
-        { word: "います" },
-        { word: "か" },
+        { word: "います"},
+        { word: "か"},
         { word: "?" },
       ],
       chunks: [
@@ -72,8 +72,8 @@ const casualExample = {
         { word: "に" },
         { word: "住んで", reading: "すんで" },
         { word: "いる" },
-        { word: "の" },
-        { word: "?" },
+        { word: "の"},
+        { word: "?"},
       ],
       chunks: [
         {

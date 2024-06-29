@@ -1,5 +1,6 @@
 import { useAITeacher } from "@/hooks/useAiTeacher";
 import { useEffect, useRef } from "react";
+import * as wanakana from 'wanakana';
 
 export const MessagesList = () => {
   const messages = useAITeacher((state) => state.messages);
@@ -9,6 +10,7 @@ export const MessagesList = () => {
   const english = useAITeacher((state) => state.english);
   const furigana = useAITeacher((state) => state.furigana);
   const classroom = useAITeacher((state) => state.classroom);
+  const romaji = useAITeacher((state) => state.romaji);
 
   const container = useRef();
 
@@ -36,7 +38,7 @@ export const MessagesList = () => {
           {furigana && word.reading && (
             <span className="text-2xl text-white/65">{word.reading}</span>
           )}
-          {word.word}
+          {romaji ? wanakana.toRomaji(word.word) : word.word}
         </span>
       ))}
     </p>
